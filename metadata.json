@@ -1,0 +1,8 @@
+{
+  "name": "Free Wi-Fi & Tech Career Banner",
+  "description": "Production-grade animated hero web banner advertising free high-speed Wi-Fi, online tech job opportunities, and full-stack developer portfolio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

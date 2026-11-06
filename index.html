@@ -1,0 +1,2559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Wi-Fi & Online Tech Jobs | Alex Rivera - Full-Stack Developer</title>
+  <meta name="description" content="High-speed free public Wi-Fi hotspot and curated remote job opportunities, brought to you by Alex Rivera, Full-Stack Software Developer & Web Designer.">
+  <meta property="og:title" content="Free Wi-Fi & Online Job Opportunities">
+  <meta property="og:description" content="Connect to gigabit free Wi-Fi and explore remote tech jobs. Powered by Software Developer Alex Rivera.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Poppins (700/800) & Inter (400/500/600/700) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- html2canvas for Download as PNG feature -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & COLOR PALETTE
+       Strictly adhering to requested palette specifications.
+       ========================================================================== */
+    :root {
+      --deep-purple: #4C1D95;
+      --deep-purple-dark: #2E1065;
+      --vibrant-purple: #7C3AED;
+      --hot-pink: #EC4899;
+      --soft-pink: #F9A8D4;
+      --fresh-green: #22C55E;
+      --fresh-green-light: #86EFAC;
+      --white: #FFFFFF;
+      --off-white: #F5F3FF;
+
+      /* Palette alphas for glassmorphism and subtle lighting */
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-bg-hover: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.20);
+      --glass-border-subtle: rgba(255, 255, 255, 0.12);
+      --purple-shadow: rgba(46, 16, 101, 0.65);
+      --pink-glow: rgba(236, 72, 153, 0.45);
+      --green-glow: rgba(34, 197, 94, 0.4);
+
+      /* Typography */
+      --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      /* Transitions */
+      --ease-out-quad: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--deep-purple-dark);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Accessibility focus rings */
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--soft-pink);
+      outline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       3. TOP UTILITY TOOLBAR
+       Provides banner mode toggle, export PNG button, and quick info.
+       ========================================================================== */
+    .top-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 24px;
+      background: rgba(46, 16, 101, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border-subtle);
+      font-size: 13px;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .toolbar-tag {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--fresh-green-light);
+      border: 1px solid var(--fresh-green);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-toolbar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: 1px solid var(--glass-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s var(--ease-out-quad);
+      white-space: nowrap;
+    }
+
+    .btn-toolbar:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--soft-pink);
+      transform: translateY(-1px);
+    }
+
+    .btn-toolbar svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    /* ==========================================================================
+       4. BANNER WRAPPER & BILLBOARD VIEWPORT
+       Configured for 1920x600 base landscape with 100% fluid responsiveness.
+       ========================================================================== */
+    .banner-container-outer {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 54px);
+    }
+
+    .banner-canvas {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      min-height: 600px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--deep-purple-dark) 0%, var(--deep-purple) 45%, #581C87 75%, var(--vibrant-purple) 100%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 80px -20px var(--purple-shadow), 0 0 100px -30px var(--pink-glow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      isolation: isolate;
+    }
+
+    /* Ambient animated mesh backdrop (15s smooth shift) */
+    .banner-bg-ambient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 30%, rgba(236, 72, 153, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 85% 70%, rgba(124, 58, 237, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 50% 10%, rgba(34, 197, 94, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 75% 20%, rgba(249, 168, 212, 0.22) 0%, transparent 45%);
+      background-size: 150% 150%;
+      animation: ambientGradientMove 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientGradientMove {
+      0% {
+        background-position: 0% 0%;
+        filter: hue-rotate(0deg);
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(15deg);
+      }
+      100% {
+        background-position: 50% 100%;
+        filter: hue-rotate(-10deg);
+      }
+    }
+
+    /* Drifting glowing orbs */
+    .glowing-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      top: -80px;
+      left: 10%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, var(--hot-pink) 0%, transparent 70%);
+      animation-duration: 14s;
+    }
+    .orb-2 {
+      bottom: -60px;
+      right: 15%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, var(--vibrant-purple) 0%, transparent 70%);
+      animation-duration: 18s;
+    }
+    .orb-3 {
+      top: 40%;
+      left: 45%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, var(--fresh-green) 0%, transparent 70%);
+      opacity: 0.2;
+      animation-duration: 10s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.15); }
+    }
+
+    /* Dynamic HTML5 Particle Canvas overlay */
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Main Banner Content Layout: 3 Columns */
+    .banner-main {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr 1.1fr;
+      gap: 28px;
+      padding: 36px 44px 20px 44px;
+      align-items: stretch;
+    }
+
+    /* ==========================================================================
+       5. ZONE A: LEFT ZONE - HEADLINES & OFFERS
+       ========================================================================== */
+    .zone-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Eyebrow Pill */
+    .eyebrow-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.18);
+      color: var(--fresh-green-light);
+      border: 1px solid var(--fresh-green);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 0 16px var(--green-glow);
+    }
+
+    .eyebrow-live-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--fresh-green);
+      box-shadow: 0 0 8px var(--fresh-green);
+      animation: pulseGreen 1.8s infinite;
+    }
+
+    /* Message Carousel Rotator */
+    .carousel-container {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--soft-pink);
+      overflow: hidden;
+      height: 20px;
+    }
+
+    .carousel-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .carousel-item.fading {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    /* Main Headline: FREE WI-FI with animated icon */
+    .headline-primary-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .headline-primary {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--white) 30%, var(--soft-pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    /* Shimmer sweep effect on the word FREE */
+    .shimmer-text {
+      background: linear-gradient(
+        90deg,
+        var(--white) 0%,
+        var(--soft-pink) 45%,
+        #FFFFFF 50%,
+        var(--soft-pink) 55%,
+        var(--white) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSweep 4s linear infinite;
+    }
+
+    @keyframes shimmerSweep {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* Animated Wi-Fi Icon (Ripple Arc Effect) */
+    .wifi-animated-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      border-radius: 14px;
+      box-shadow: 0 0 20px var(--green-glow);
+    }
+
+    .wifi-svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .wifi-arc-1 {
+      animation: wifiArcPulse 2s infinite ease-out 0s;
+      transform-origin: 12px 18px;
+    }
+    .wifi-arc-2 {
+      animation: wifiArcPulse 2s infinite ease-out 0.3s;
+      transform-origin: 12px 18px;
+    }
+    .wifi-arc-3 {
+      animation: wifiArcPulse 2s infinite ease-out 0.6s;
+      transform-origin: 12px 18px;
+    }
+    .wifi-dot {
+      animation: wifiDotGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes wifiArcPulse {
+      0% { opacity: 0.2; stroke: var(--soft-pink); }
+      50% { opacity: 1; stroke: var(--fresh-green-light); filter: drop-shadow(0 0 4px var(--fresh-green)); }
+      100% { opacity: 0.2; stroke: var(--soft-pink); }
+    }
+
+    @keyframes wifiDotGlow {
+      0%, 100% { fill: var(--fresh-green); filter: drop-shadow(0 0 2px var(--fresh-green)); }
+      50% { fill: var(--fresh-green-light); filter: drop-shadow(0 0 6px var(--fresh-green-light)); }
+    }
+
+    /* Second Headline: ONLINE JOB OPPORTUNITIES */
+    .headline-secondary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+
+    .floating-icon {
+      animation: floatUpDown 3.2s ease-in-out infinite alternate;
+      color: var(--hot-pink);
+    }
+
+    .rocket-icon {
+      animation: floatUpDown 2.8s ease-in-out infinite alternate-reverse;
+      color: var(--fresh-green);
+    }
+
+    @keyframes floatUpDown {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-5px) rotate(3deg); }
+    }
+
+    /* Subline */
+    .subline-text {
+      font-size: clamp(14px, 1.2vw, 17px);
+      font-weight: 500;
+      color: var(--off-white);
+      opacity: 0.92;
+    }
+
+    .subline-tagline {
+      font-weight: 700;
+      color: var(--soft-pink);
+    }
+
+    /* Badges with pulsing green dot */
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .pulse-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      transition: all 0.2s ease;
+    }
+
+    .pulse-badge:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--soft-pink);
+    }
+
+    .dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--fresh-green);
+      position: relative;
+    }
+
+    .dot-pulse::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid var(--fresh-green);
+      animation: pulseGreenRing 1.8s ease-out infinite;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    @keyframes pulseGreenRing {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* CTA Buttons Row */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-primary {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--hot-pink) 0%, #D946EF 50%, var(--vibrant-purple) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px var(--pink-glow), 0 0 0 1px rgba(255, 255, 255, 0.2);
+      transition: all 0.25s var(--ease-out-quad);
+      animation: pulseBtnGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseBtnGlow {
+      0% { box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4), 0 0 15px rgba(236, 72, 153, 0.2); }
+      100% { box-shadow: 0 12px 30px rgba(236, 72, 153, 0.7), 0 0 25px rgba(236, 72, 153, 0.4); }
+    }
+
+    .btn-cta-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 34px rgba(236, 72, 153, 0.8), 0 0 30px rgba(249, 168, 212, 0.5);
+    }
+
+    .btn-cta-primary:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid var(--white);
+      border-radius: 14px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s var(--ease-out-quad);
+    }
+
+    .btn-cta-secondary:hover {
+      background: var(--white);
+      color: var(--deep-purple);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-cta-secondary:active {
+      transform: translateY(1px);
+    }
+
+    /* Button Ripple Click Effect */
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ==========================================================================
+       6. ZONE B: CENTER ZONE - DEVELOPER PROFILE CARD (GLASSMORPHISM)
+       ========================================================================== */
+    .zone-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .profile-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+      will-change: transform;
+    }
+
+    .profile-card:hover {
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.55), 0 0 35px rgba(124, 58, 237, 0.35);
+    }
+
+    /* Avatar with rotating gradient ring (purple, pink, green) */
+    .avatar-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--vibrant-purple),
+        var(--hot-pink),
+        var(--fresh-green),
+        var(--soft-pink),
+        var(--vibrant-purple)
+      );
+      animation: rotateAvatarRing 6s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rotateAvatarRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .avatar-inner {
+      position: relative;
+      z-index: 2;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--deep-purple-dark);
+      border: 3px solid var(--deep-purple);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-fallback-svg {
+      width: 60px;
+      height: 60px;
+      fill: none;
+      stroke: var(--soft-pink);
+      stroke-width: 1.5;
+    }
+
+    /* Profile Info */
+    .profile-name {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .profile-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--soft-pink);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .profile-bio {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--off-white);
+      opacity: 0.9;
+      max-width: 320px;
+      margin-bottom: 12px;
+    }
+
+    /* Available for work badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid var(--fresh-green);
+      color: var(--fresh-green-light);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      box-shadow: 0 0 12px var(--green-glow);
+    }
+
+    .status-badge .dot-live {
+      width: 7px;
+      height: 7px;
+      background: var(--fresh-green);
+      border-radius: 50%;
+      animation: pulseGreen 1.6s infinite;
+    }
+
+    /* Stats Row with Count-Up */
+    .stats-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--glass-border-subtle);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--soft-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    /* ==========================================================================
+       7. ZONE C: RIGHT ZONE - SKILLS & TECHNOLOGIES
+       ========================================================================== */
+    .zone-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 22px 24px;
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.35);
+    }
+
+    .zone-right-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .zone-heading {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .zone-heading svg {
+      width: 18px;
+      height: 18px;
+      color: var(--hot-pink);
+    }
+
+    .tech-pill-count {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--fresh-green-light);
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--fresh-green);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    /* Icon Chips Grid */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .tech-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 12px;
+      padding: 8px 4px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--off-white);
+      cursor: pointer;
+      transition: all 0.22s var(--ease-out-quad);
+      text-align: center;
+    }
+
+    .tech-chip:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--soft-pink);
+      color: var(--white);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+    }
+
+    .tech-chip svg {
+      width: 22px;
+      height: 22px;
+      transition: transform 0.2s ease;
+    }
+
+    .tech-chip:hover svg {
+      transform: scale(1.15);
+    }
+
+    /* Animated Skill Bars */
+    .skill-bars-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skill-bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .skill-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--off-white);
+    }
+
+    .skill-percentage {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--soft-pink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skill-track {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--vibrant-purple) 0%, var(--hot-pink) 60%, var(--soft-pink) 100%);
+      box-shadow: 0 0 8px var(--pink-glow);
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Scrolling Marquee Strip */
+    .marquee-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 10px;
+      padding: 6px 0;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: inline-flex;
+      gap: 24px;
+      animation: marqueeScroll 18s linear infinite;
+    }
+
+    .marquee-wrapper:hover .marquee-content {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--soft-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .marquee-separator {
+      color: var(--fresh-green);
+      font-size: 14px;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==========================================================================
+       8. ZONE D: BOTTOM STRIP - CONTACT & INFO
+       ========================================================================== */
+    .banner-bottom-strip {
+      position: relative;
+      z-index: 3;
+      margin: 10px 24px 20px 24px;
+      background: rgba(46, 16, 101, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Left section of bottom strip: contact items */
+    .contact-items-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--off-white);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .contact-link:hover {
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .contact-link svg {
+      width: 14px;
+      height: 14px;
+      color: var(--soft-pink);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-link:hover svg {
+      color: var(--hot-pink);
+      transform: scale(1.15);
+    }
+
+    /* Center section: Wi-Fi detail pill with Copy button */
+    .wifi-detail-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid var(--fresh-green);
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--white);
+    }
+
+    .wifi-detail-badge {
+      font-weight: 700;
+      color: var(--fresh-green-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wifi-network-name {
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    .wifi-hours-text {
+      color: var(--soft-pink);
+      font-size: 11px;
+    }
+
+    .btn-copy-wifi {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--glass-border);
+      color: var(--white);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-wifi:hover {
+      background: var(--white);
+      color: var(--deep-purple);
+    }
+
+    .btn-copy-wifi svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Right section: QR Code Box */
+    .qr-code-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      padding: 5px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .qr-code-box:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--soft-pink);
+      transform: translateY(-1px);
+    }
+
+    .qr-svg-preview {
+      width: 32px;
+      height: 32px;
+      background: var(--white);
+      border-radius: 4px;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-label-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .qr-label-bold {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .qr-label-sub {
+      font-size: 10px;
+      color: var(--fresh-green-light);
+    }
+
+    /* ==========================================================================
+       9. MODALS: CONNECT WI-FI MODAL & BROWSE JOBS MODAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(15, 7, 30, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: linear-gradient(135deg, var(--deep-purple) 0%, var(--deep-purple-dark) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 50px var(--pink-glow);
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.25s var(--ease-out-quad);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--glass-border);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--hot-pink);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-desc {
+      font-size: 13.5px;
+      color: var(--soft-pink);
+      margin-top: 4px;
+    }
+
+    /* Jobs board specific styling inside modal */
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .job-item {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .job-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--soft-pink);
+      transform: translateX(4px);
+    }
+
+    .job-item-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+    }
+
+    .job-item-meta {
+      font-size: 12px;
+      color: var(--soft-pink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .job-type-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--fresh-green-light);
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid var(--fresh-green);
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .job-salary {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--white);
+      font-size: 13px;
+    }
+
+    .btn-apply-job {
+      background: linear-gradient(135deg, var(--hot-pink), var(--vibrant-purple));
+      color: var(--white);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-apply-job:hover {
+      box-shadow: 0 4px 12px var(--pink-glow);
+      transform: scale(1.05);
+    }
+
+    /* Speed test simulation card */
+    .speed-test-box {
+      margin-top: 16px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .speed-gauge-val {
+      font-family: var(--font-heading);
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--fresh-green-light);
+      margin: 8px 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       10. TOAST NOTIFICATION
+       ========================================================================== */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--deep-purple-dark);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--green-glow);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s var(--ease-out-quad);
+      pointer-events: none;
+    }
+
+    .toast-notice.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast-notice svg {
+      width: 18px;
+      height: 18px;
+      color: var(--fresh-green);
+    }
+
+    /* ==========================================================================
+       11. RESPONSIVENESS & MEDIA QUERIES
+       Desktop (≥1200px): 3 columns as designed
+       Tablet (768px - 1199px): 2 columns, skills below
+       Mobile (<768px): Single column stack
+       ========================================================================== */
+    @media (max-width: 1280px) {
+      .banner-main {
+        grid-template-columns: 1.1fr 0.9fr 1fr;
+        padding: 28px 28px 16px 28px;
+        gap: 20px;
+      }
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      /* Tablet view */
+      .banner-main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "left center"
+          "right right";
+      }
+      .zone-left { grid-area: left; }
+      .zone-center { grid-area: center; }
+      .zone-right {
+        grid-area: right;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+      }
+      .zone-right-col-tech {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .zone-right-col-bars {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile stack */
+      .top-toolbar {
+        padding: 8px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .toolbar-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .banner-container-outer {
+        padding: 10px;
+      }
+      .banner-canvas {
+        min-height: auto;
+        border-radius: 18px;
+      }
+      .banner-main {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 16px;
+      }
+      .zone-right {
+        display: flex;
+        flex-direction: column;
+      }
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .headline-primary {
+        font-size: 2.2rem;
+      }
+      .banner-bottom-strip {
+        margin: 0 16px 16px 16px;
+        padding: 14px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .contact-items-group {
+        justify-content: center;
+      }
+      .wifi-detail-box {
+        justify-content: space-between;
+      }
+      .qr-code-box {
+        justify-content: center;
+      }
+    }
+
+    /* Accessibility: prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-content {
+        animation: none !important;
+      }
+      .avatar-ring {
+        animation: none !important;
+      }
+      .banner-bg-ambient {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP CONTROL & PREVIEW TOOLBAR
+       Includes direct PNG banner export, mode switcher, and live indicator.
+       ========================================================================== -->
+  <header class="top-toolbar">
+    <div class="toolbar-brand">
+      <span class="toolbar-tag">Hotspot Active</span>
+      <span>Community Free Wi-Fi & Remote Tech Job Hub</span>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-toolbar" id="btn-copy-wifi-top" title="Copy Wi-Fi SSID to clipboard">
+        <svg viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        Copy Wi-Fi SSID
+      </button>
+      <button class="btn-toolbar" id="btn-download-png" title="Export this entire hero banner as high-res PNG image">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Banner PNG
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN HERO BANNER CONTAINER (1920x600 Base Landscape / Responsive)
+       ========================================================================== -->
+  <main class="banner-container-outer">
+    <section class="banner-canvas" id="hero-banner" aria-label="Free Wi-Fi and Online Job Opportunities Banner">
+
+      <!-- Dynamic Ambient Shifting Gradient & Floating Blobs -->
+      <div class="banner-bg-ambient" aria-hidden="true"></div>
+      <div class="glowing-orb orb-1" aria-hidden="true"></div>
+      <div class="glowing-orb orb-2" aria-hidden="true"></div>
+      <div class="glowing-orb orb-3" aria-hidden="true"></div>
+
+      <!-- 60FPS Interactive Floating Particles Canvas -->
+      <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+      <!-- 3-Column Content Layout -->
+      <div class="banner-main">
+
+        <!-- ====================================================================
+             ZONE A: LEFT ZONE - HEADLINE AND OFFERS
+             ==================================================================== -->
+        <div class="zone-left">
+          
+          <!-- Eyebrow Pill + Rotating Message Carousel -->
+          <div class="eyebrow-container">
+            <div class="eyebrow-pill">
+              <span class="eyebrow-live-indicator"></span>
+              <span id="cfg-eyebrow">OPEN TO EVERYONE</span>
+            </div>
+            <div class="carousel-container" aria-live="polite">
+              <span class="carousel-item" id="message-carousel-text">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>Free Wi-Fi for everyone</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Main Headline: FREE WI-FI + Animated Ripple Wi-Fi Icon -->
+          <div class="headline-primary-wrapper">
+            <h1 class="headline-primary">
+              <span class="shimmer-text">FREE</span> WI-FI
+            </h1>
+            <div class="wifi-animated-icon" title="High-Speed Wi-Fi Active" aria-hidden="true">
+              <svg class="wifi-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path class="wifi-arc-3" d="M2 8.82a15 15 0 0 1 20 0"/>
+                <path class="wifi-arc-2" d="M5 12.86a10 10 0 0 1 14 0"/>
+                <path class="wifi-arc-1" d="M8.5 16.43a5 5 0 0 1 7 0"/>
+                <circle class="wifi-dot" cx="12" cy="20" r="1.5"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Second Headline: ONLINE JOB OPPORTUNITIES with briefcase -->
+          <div class="headline-secondary">
+            <span class="floating-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </span>
+            <span>ONLINE JOB OPPORTUNITIES</span>
+          </div>
+
+          <!-- Subline -->
+          <p class="subline-text">
+            <span class="subline-tagline">Get connected. Get hired. Get ahead.</span> High-speed internet access & vetted tech jobs for freelancers, developers, and remote workers.
+          </p>
+
+          <!-- Badges with pulsing green dots -->
+          <div class="badges-row">
+            <div class="pulse-badge">
+              <span class="dot-pulse" aria-hidden="true"></span>
+              <span>NO PASSWORD FEES</span>
+            </div>
+            <div class="pulse-badge">
+              <span class="dot-pulse" aria-hidden="true"></span>
+              <span>REMOTE & FREELANCE JOBS</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons: Connect Now & Browse Jobs -->
+          <div class="cta-row">
+            <button class="btn-cta-primary" id="btn-connect-now" aria-label="Connect Now to Free Wi-Fi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                <line x1="12" y1="20" x2="12.01" y2="20"/>
+              </svg>
+              <span>Connect Now</span>
+            </button>
+            <button class="btn-cta-secondary" id="btn-browse-jobs" aria-label="Browse Available Online Jobs">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <span>Browse Jobs</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ====================================================================
+             ZONE B: CENTER ZONE - DEVELOPER PROFILE CARD (GLASSMORPHISM)
+             Features mouse-follow 3D parallax tilt & rotating multi-color gradient ring.
+             ==================================================================== -->
+        <div class="zone-center">
+          <div class="profile-card" id="developer-card" role="region" aria-label="Developer Profile Card">
+            
+            <!-- Circular Avatar with Rotating Gradient Ring -->
+            <div class="avatar-wrapper">
+              <div class="avatar-ring" aria-hidden="true"></div>
+              <div class="avatar-inner">
+                <!-- High-quality Developer Vector Illustration / Avatar -->
+                <svg class="avatar-fallback-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-label="Profile Avatar">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                  <path d="M9 13l2 2 4-4" stroke="var(--fresh-green)" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Developer Identity & Bio -->
+            <h2 class="profile-name" id="cfg-dev-name">Alex Rivera</h2>
+            <div class="profile-title" id="cfg-dev-title">Software Developer | Web Designer</div>
+            <p class="profile-bio" id="cfg-dev-bio">
+              I build scalable systems and beautiful web experiences using modern technologies.
+            </p>
+
+            <!-- Available for work badge with pulsing dot -->
+            <div class="status-badge">
+              <span class="dot-live" aria-hidden="true"></span>
+              <span id="cfg-dev-status">Available for work</span>
+            </div>
+
+            <!-- Stats Row with Count-Up Numbers -->
+            <div class="stats-row">
+              <div class="stat-item">
+                <span class="stat-number count-up" data-target="50" id="stat-projects">0</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number count-up" data-target="6" id="stat-experience">0</span>
+                <span class="stat-label">Years Exp</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number count-up" data-target="35" id="stat-clients">0</span>
+                <span class="stat-label">Happy Clients</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ====================================================================
+             ZONE C: RIGHT ZONE - SKILLS & TECHNOLOGIES
+             Includes Icon Chips Grid, Animated Skill Bars & Infinite Marquee.
+             ==================================================================== -->
+        <div class="zone-right">
+          
+          <div class="zone-right-header">
+            <h3 class="zone-heading">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+              <span>Skills & Tech Stack</span>
+            </h3>
+            <span class="tech-pill-count">12 Core Technologies</span>
+          </div>
+
+          <!-- 12 Tech Icon Chips Grid -->
+          <div class="tech-grid" id="tech-chips-grid" aria-label="Technology Stack Chips">
+            <!-- Chips injected by JavaScript config or rendered semantically -->
+          </div>
+
+          <!-- Animated Skill Bars -->
+          <div class="skill-bars-container" id="skill-bars-list" aria-label="Developer Skill Competencies">
+            <!-- Dynamically populated from JavaScript config -->
+          </div>
+
+          <!-- Scrolling Marquee Strip -->
+          <div class="marquee-wrapper" aria-hidden="true">
+            <div class="marquee-content" id="marquee-track">
+              <!-- Duplicated for infinite continuous loop -->
+              <span class="marquee-item">Scalable Systems <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Responsive Design <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">New Technologies <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Clean Code <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Web Design <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">API Architecture <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Scalable Systems <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Responsive Design <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">New Technologies <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Clean Code <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">Web Design <span class="marquee-separator">•</span></span>
+              <span class="marquee-item">API Architecture <span class="marquee-separator">•</span></span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           ZONE D: BOTTOM STRIP - CONTACT AND INFO
+           ==================================================================== -->
+      <footer class="banner-bottom-strip">
+        
+        <!-- Contact Icons & Links -->
+        <div class="contact-items-group" id="contact-links-container">
+          <!-- Filled dynamically via BANNER_CONFIG -->
+        </div>
+
+        <!-- Wi-Fi Details Line -->
+        <div class="wifi-detail-box">
+          <span class="wifi-detail-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><circle cx="12" cy="20" r="1.5"/></svg>
+            Wi-Fi:
+          </span>
+          <span class="wifi-network-name" id="cfg-wifi-ssid">Community-Free-Fiber-5G</span>
+          <span class="wifi-hours-text">| Hours: 24/7 Unlimited Access</span>
+          <button class="btn-copy-wifi" id="btn-copy-wifi-bottom" title="Copy Wi-Fi network name">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+          </button>
+        </div>
+
+        <!-- QR Code Placeholder Box -->
+        <div class="qr-code-box" id="btn-show-qr" title="Click to enlarge connection QR code">
+          <div class="qr-svg-preview">
+            <!-- Mini vector QR code representation -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E1065" stroke-width="1.8">
+              <rect x="2" y="2" width="7" height="7"/>
+              <rect x="15" y="2" width="7" height="7"/>
+              <rect x="2" y="15" width="7" height="7"/>
+              <path d="M4.5 4.5h2v2h-2z M17.5 4.5h2v2h-2z M4.5 17.5h2v2h-2z M14 15h3v3h-3z M19 14v4 M15 20h4"/>
+            </svg>
+          </div>
+          <div class="qr-label-text">
+            <span class="qr-label-bold">Scan to Connect</span>
+            <span class="qr-label-sub">or Scan for Jobs</span>
+          </div>
+        </div>
+
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       INTERACTIVE MODAL 1: CONNECT TO WI-FI
+       ========================================================================== -->
+  <div class="modal-overlay" id="modal-wifi" role="dialog" aria-modal="true" aria-labelledby="modal-wifi-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" data-close-modal aria-label="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-wifi-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--fresh-green)" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><circle cx="12" cy="20" r="1.5"/></svg>
+          Connect to Free Community Wi-Fi
+        </h3>
+        <p class="modal-desc">Fast, secure, and complimentary fiber internet access provided for public and professional use.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: rgba(255,255,255,0.06); padding: 14px 18px; border-radius: 12px; border: 1px solid var(--glass-border-subtle); display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 11px; color: var(--soft-pink); font-weight: 600; text-transform: uppercase;">Network SSID</div>
+            <div style="font-size: 18px; font-weight: 800; color: var(--white); font-family: var(--font-heading);" id="modal-ssid-text">Community-Free-Fiber-5G</div>
+          </div>
+          <button class="btn-toolbar" id="btn-copy-modal-ssid">Copy SSID</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 12px; border: 1px solid var(--glass-border-subtle);">
+            <div style="font-size: 11px; color: var(--soft-pink); font-weight: 600;">SECURITY TYPE</div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--fresh-green-light); margin-top: 2px;">Open (No Password)</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 12px; border: 1px solid var(--glass-border-subtle);">
+            <div style="font-size: 11px; color: var(--soft-pink); font-weight: 600;">MAX SPEED</div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-top: 2px;">300 Mbps Symmetrical</div>
+          </div>
+        </div>
+
+        <!-- Simulated Speed Live Gauge -->
+        <div class="speed-test-box">
+          <div style="font-size: 12px; color: var(--soft-pink); font-weight: 600;">LIVE CONNECTION BENCHMARK</div>
+          <div class="speed-gauge-val" id="speed-meter-val">312.4 <span style="font-size: 18px; color: var(--white);">Mbps</span></div>
+          <div style="font-size: 11.5px; color: var(--fresh-green-light); display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <span style="width: 8px; height: 8px; background: var(--fresh-green); border-radius: 50%; display: inline-block;"></span>
+            Low Latency (4ms) • Suitable for 4K Streaming, Video Calls & Remote Work
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 8px;">
+          <button class="btn-cta-primary" id="btn-simulate-connect" style="width: 100%; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Auto-Connect Mobile Device</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       INTERACTIVE MODAL 2: BROWSE ONLINE JOBS
+       ========================================================================== -->
+  <div class="modal-overlay" id="modal-jobs" role="dialog" aria-modal="true" aria-labelledby="modal-jobs-title">
+    <div class="modal-card" style="max-width: 680px;">
+      <button class="modal-close-btn" data-close-modal aria-label="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-jobs-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hot-pink)" stroke-width="2.5"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Curated Remote & Freelance Tech Jobs
+        </h3>
+        <p class="modal-desc">Vetted online software engineering, design, and development opportunities updated weekly.</p>
+      </div>
+
+      <!-- Quick Category Filter -->
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+        <button class="btn-toolbar" style="background: var(--hot-pink); border-color: var(--hot-pink);" data-filter="all">All Roles</button>
+        <button class="btn-toolbar" data-filter="Engineering">Engineering</button>
+        <button class="btn-toolbar" data-filter="Frontend">Frontend</button>
+        <button class="btn-toolbar" data-filter="Design">Design</button>
+        <button class="btn-toolbar" data-filter="Contract">Freelance</button>
+      </div>
+
+      <!-- Job List container -->
+      <div class="job-list" id="modal-jobs-container">
+        <!-- Injected via BANNER_CONFIG.jobs -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TOAST FEEDBACK
+       ========================================================================== -->
+  <div class="toast-notice" id="toast-message" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="toast-text">Wi-Fi Network Name copied to clipboard!</span>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT: CONFIGURATION, ANIMATIONS & INTERACTIVITY
+       ========================================================================== -->
+  <script>
+    /**
+     * ==========================================================================
+     * MASTER CONFIGURATION OBJECT (EASY CUSTOMIZATION)
+     * Change all personal names, titles, bio, contact links, Wi-Fi info,
+     * skill percentages, and job postings here without altering any HTML markup!
+     * ==========================================================================
+     */
+    const BANNER_CONFIG = {
+      // Eyebrow & Carousel text messages
+      eyebrow: "OPEN TO EVERYONE",
+      carouselMessages: [
+        "Free Wi-Fi for everyone",
+        "Remote jobs updated weekly",
+        "Learn. Earn. Connect.",
+        "Custom websites and systems built for you"
+      ],
+
+      // Developer Profile Details
+      profile: {
+        name: "Alex Rivera",
+        title: "Software Developer | Web Designer",
+        bio: "I build scalable systems and beautiful web experiences using modern technologies.",
+        status: "Available for work",
+        stats: {
+          projects: 50,
+          experience: 6,
+          clients: 35
+        }
+      },
+
+      // Wi-Fi Access Point Details
+      wifi: {
+        ssid: "Community-Free-Fiber-5G",
+        security: "Open / High Speed",
+        speed: "300 Mbps Symmetrical",
+        hours: "24/7 Unlimited Access",
+        location: "Tech Hub & Surrounding Public Area"
+      },
+
+      // Skills & Tech Stack Chips (12 core technologies)
+      skills: [
+        { name: "HTML5", icon: "html5" },
+        { name: "CSS3", icon: "css3" },
+        { name: "JavaScript", icon: "javascript" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "React", icon: "react" },
+        { name: "Node.js", icon: "nodejs" },
+        { name: "Python", icon: "python" },
+        { name: "Tailwind CSS", icon: "tailwind" },
+        { name: "Git / GitHub", icon: "github" },
+        { name: "REST APIs", icon: "api" },
+        { name: "SQL / Mongo", icon: "database" },
+        { name: "Figma", icon: "figma" }
+      ],
+
+      // Animated Skill Proficiency Bars
+      skillBars: [
+        { name: "Web Development", percentage: 95 },
+        { name: "UI/UX Design", percentage: 90 },
+        { name: "Scalable Systems", percentage: 88 },
+        { name: "API Design", percentage: 92 }
+      ],
+
+      // Contact Links & Handles
+      contact: {
+        phone: "+1 (555) 382-9014",
+        whatsapp: "+1 (555) 382-9014",
+        email: "alex.dev@innovatetech.io",
+        website: "https://alexrivera.dev",
+        github: "github.com/alexrivera-dev",
+        linkedin: "linkedin.com/in/alexrivera-dev",
+        location: "Austin, Texas, USA"
+      },
+
+      // Curated Remote & Freelance Job Opportunities
+      jobs: [
+        {
+          id: 1,
+          title: "Senior React / TypeScript Developer",
+          company: "Nexus Cloud Systems",
+          category: "Frontend",
+          type: "Full-Time Remote",
+          salary: "$130k - $160k",
+          location: "Worldwide / Remote",
+          applyUrl: "https://example.com/jobs/1"
+        },
+        {
+          id: 2,
+          title: "Full-Stack Node.js & Python Engineer",
+          company: "HyperScale Data",
+          category: "Engineering",
+          type: "Contract / Remote",
+          salary: "$75 - $100 / hr",
+          location: "Americas / Remote",
+          applyUrl: "https://example.com/jobs/2"
+        },
+        {
+          id: 3,
+          title: "UI/UX Designer & Design Systems Lead",
+          company: "Aura Creative Studio",
+          category: "Design",
+          type: "Freelance",
+          salary: "$4,500 / mo",
+          location: "Flexible Hours",
+          applyUrl: "https://example.com/jobs/3"
+        },
+        {
+          id: 4,
+          title: "API Integration & Backend Specialist",
+          company: "FlowPoint Payments",
+          category: "Engineering",
+          type: "Contract",
+          salary: "$85k - $110k",
+          location: "Global Remote",
+          applyUrl: "https://example.com/jobs/4"
+        }
+      ]
+    };
+
+    /**
+     * ==========================================================================
+     * SVG ICON DEFINITIONS (Crisp, High-Performance Inline SVGs)
+     * ==========================================================================
+     */
+    const SVG_ICONS = {
+      html5: `<svg viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2"><path d="M4 3l1.5 15L12 21l6.5-3L20 3H4z"/><path d="M12 6v12l4.5-2.2L17 6H12z"/></svg>`,
+      css3: `<svg viewBox="0 0 24 24" fill="none" stroke="#86EFAC" stroke-width="2"><path d="M4 3l1.5 15L12 21l6.5-3L20 3H4z"/><path d="M8 8h8M8 12h8M9 16h6l-1 2-2 0.7-2-0.7z"/></svg>`,
+      javascript: `<svg viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M10 16c-.5.7-1.2 1-2 1a2 2 0 0 1-2-2v-3M18 16c-.5.7-1.5 1-2.5 1-2 0-3-1.5-3-3s1-3 3-3c1 0 2 .5 2.5 1.2"/></svg>`,
+      typescript: `<svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 9v8M5 9h6M14 17c1.5 0 2.5-.8 2.5-2 0-2.5-3.5-1.5-3.5-3.5 0-1 1-1.5 2-1.5 1.5 0 2.5.7 2.5 1.5"/></svg>`,
+      react: `<svg viewBox="0 0 24 24" fill="none" stroke="#86EFAC" stroke-width="2"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(90 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(150 12 12)"/></svg>`,
+      nodejs: `<svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z"/><path d="M12 6.5l4 2.3v4.4l-4 2.3-4-2.3v-4.4L12 6.5z"/></svg>`,
+      python: `<svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><path d="M12 2c-3.5 0-4 1.5-4 3v2h8V6a3 3 0 0 0-3-3h-1z"/><path d="M12 22c3.5 0 4-1.5 4-3v-2H8v1a3 3 0 0 0 3 3h1z"/><circle cx="10" cy="5" r=".7"/><circle cx="14" cy="19" r=".7"/></svg>`,
+      tailwind: `<svg viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2"><path d="M6 12c1.5-3 3.5-3.5 6-1.5 2.5 2 4.5 1.5 6-1.5-1.5 3-3.5 3.5-6 1.5-2.5-2-4.5-1.5-6 1.5z"/><path d="M2 17c1.5-3 3.5-3.5 6-1.5 2.5 2 4.5 1.5 6-1.5-1.5 3-3.5 3.5-6 1.5-2.5-2-4.5-1.5-6 1.5z"/></svg>`,
+      github: `<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+      api: `<svg viewBox="0 0 24 24" fill="none" stroke="#86EFAC" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`,
+      database: `<svg viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
+      figma: `<svg viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>`,
+      phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+      whatsapp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+      mail: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+      globe: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+      linkedin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+      mapPin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`
+    };
+
+    /**
+     * ==========================================================================
+     * INITIALIZATION & DOM HYDRATION
+     * ==========================================================================
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      hydrateContentFromConfig();
+      initParticles();
+      initMessageCarousel();
+      initParallaxTilt();
+      initIntersectionObserver();
+      initInteractiveModals();
+      initClipboardAndExport();
+    });
+
+    /**
+     * Hydrate DOM elements from BANNER_CONFIG
+     */
+    function hydrateContentFromConfig() {
+      // Profile Details
+      document.getElementById("cfg-dev-name").textContent = BANNER_CONFIG.profile.name;
+      document.getElementById("cfg-dev-title").textContent = BANNER_CONFIG.profile.title;
+      document.getElementById("cfg-dev-bio").textContent = BANNER_CONFIG.profile.bio;
+      document.getElementById("cfg-dev-status").textContent = BANNER_CONFIG.profile.status;
+      document.getElementById("cfg-eyebrow").textContent = BANNER_CONFIG.eyebrow;
+
+      // Stats Targets
+      document.getElementById("stat-projects").setAttribute("data-target", BANNER_CONFIG.profile.stats.projects);
+      document.getElementById("stat-experience").setAttribute("data-target", BANNER_CONFIG.profile.stats.experience);
+      document.getElementById("stat-clients").setAttribute("data-target", BANNER_CONFIG.profile.stats.clients);
+
+      // Wi-Fi Details
+      document.getElementById("cfg-wifi-ssid").textContent = BANNER_CONFIG.wifi.ssid;
+      const modalSsid = document.getElementById("modal-ssid-text");
+      if (modalSsid) modalSsid.textContent = BANNER_CONFIG.wifi.ssid;
+
+      // Populate 12 Tech Icon Chips
+      const chipsContainer = document.getElementById("tech-chips-grid");
+      chipsContainer.innerHTML = "";
+      BANNER_CONFIG.skills.forEach(skill => {
+        const chip = document.createElement("div");
+        chip.className = "tech-chip";
+        chip.title = skill.name;
+        chip.innerHTML = `
+          ${SVG_ICONS[skill.icon] || SVG_ICONS.api}
+          <span>${skill.name}</span>
+        `;
+        chipsContainer.appendChild(chip);
+      });
+
+      // Populate Animated Skill Bars
+      const barsContainer = document.getElementById("skill-bars-list");
+      barsContainer.innerHTML = "";
+      BANNER_CONFIG.skillBars.forEach(sb => {
+        const barRow = document.createElement("div");
+        barRow.className = "skill-bar-row";
+        barRow.innerHTML = `
+          <div class="skill-bar-labels">
+            <span>${sb.name}</span>
+            <span class="skill-percentage">${sb.percentage}%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-width="${sb.percentage}%"></div>
+          </div>
+        `;
+        barsContainer.appendChild(barRow);
+      });
+
+      // Populate Bottom Contact Info
+      const contactGroup = document.getElementById("contact-links-container");
+      contactGroup.innerHTML = `
+        <a href="tel:${BANNER_CONFIG.contact.phone}" class="contact-link" title="Call">
+          ${SVG_ICONS.phone}
+          <span>${BANNER_CONFIG.contact.phone}</span>
+        </a>
+        <a href="https://wa.me/${BANNER_CONFIG.contact.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener" class="contact-link" title="WhatsApp Chat">
+          ${SVG_ICONS.whatsapp}
+          <span>WhatsApp</span>
+        </a>
+        <a href="mailto:${BANNER_CONFIG.contact.email}" class="contact-link" title="Send Email">
+          ${SVG_ICONS.mail}
+          <span>${BANNER_CONFIG.contact.email}</span>
+        </a>
+        <a href="${BANNER_CONFIG.contact.website}" target="_blank" rel="noopener" class="contact-link" title="Visit Portfolio">
+          ${SVG_ICONS.globe}
+          <span>Portfolio</span>
+        </a>
+        <a href="https://${BANNER_CONFIG.contact.github}" target="_blank" rel="noopener" class="contact-link" title="GitHub Profile">
+          ${SVG_ICONS.github}
+          <span>GitHub</span>
+        </a>
+        <a href="https://${BANNER_CONFIG.contact.linkedin}" target="_blank" rel="noopener" class="contact-link" title="LinkedIn Profile">
+          ${SVG_ICONS.linkedin}
+          <span>LinkedIn</span>
+        </a>
+        <span class="contact-link" title="Location">
+          ${SVG_ICONS.mapPin}
+          <span>${BANNER_CONFIG.contact.location}</span>
+        </span>
+      `;
+
+      // Render Modal Jobs
+      renderJobsModal(BANNER_CONFIG.jobs);
+    }
+
+    /**
+     * Render Job listings inside the Browse Jobs modal
+     */
+    function renderJobsModal(jobList) {
+      const container = document.getElementById("modal-jobs-container");
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (jobList.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding: 20px; color: var(--soft-pink);">No jobs found in this category.</div>`;
+        return;
+      }
+
+      jobList.forEach(job => {
+        const item = document.createElement("div");
+        item.className = "job-item";
+        item.innerHTML = `
+          <div>
+            <div class="job-item-title">${job.title}</div>
+            <div class="job-item-meta">
+              <span>${job.company}</span>
+              <span>•</span>
+              <span class="job-type-pill">${job.type}</span>
+              <span>•</span>
+              <span>${job.location}</span>
+            </div>
+          </div>
+          <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+            <div class="job-salary">${job.salary}</div>
+            <button class="btn-apply-job" onclick="handleApplyJob('${job.title}', '${job.company}')">Apply Now</button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    window.handleApplyJob = function(jobTitle, company) {
+      showToast(`Redirecting to application for ${jobTitle} at ${company}...`);
+    };
+
+    /**
+     * ==========================================================================
+     * 60FPS DRIFTING PARTICLES CANVAS
+     * Ultra lightweight vanilla canvas animation with translucent purple,
+     * pink and green dots drifting smoothly.
+     * ==========================================================================
+     */
+    function initParticles() {
+      const canvas = document.getElementById("particles-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      let width, height;
+      function resizeCanvas() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        width = canvas.width = rect.width;
+        height = canvas.height = rect.height;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      const particleCount = 42;
+      const colors = ["rgba(236, 72, 153, 0.4)", "rgba(124, 58, 237, 0.4)", "rgba(34, 197, 94, 0.35)", "rgba(249, 168, 212, 0.35)"];
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2.5 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    /**
+     * ==========================================================================
+     * ROTATING MESSAGE CAROUSEL (Every 4 seconds with smooth crossfade)
+     * ==========================================================================
+     */
+    function initMessageCarousel() {
+      const carouselEl = document.getElementById("message-carousel-text");
+      if (!carouselEl) return;
+      const messages = BANNER_CONFIG.carouselMessages;
+      let currentIndex = 0;
+
+      setInterval(() => {
+        carouselEl.classList.add("fading");
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % messages.length;
+          carouselEl.innerHTML = `
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>${messages[currentIndex]}</span>
+          `;
+          carouselEl.classList.remove("fading");
+        }, 500);
+      }, 4000);
+    }
+
+    /**
+     * ==========================================================================
+     * SUBTLE 3D PARALLAX TILT ON DEVELOPER PROFILE CARD
+     * Follows cursor smoothly; disabled on touch/mobile.
+     * ==========================================================================
+     */
+    function initParallaxTilt() {
+      const card = document.getElementById("developer-card");
+      if (!card || window.matchMedia("(hover: none)").matches) return;
+
+      const container = card.parentElement;
+
+      container.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenterX = rect.left + rect.width / 2;
+        const cardCenterY = rect.top + rect.height / 2;
+
+        const deltaX = (e.clientX - cardCenterX) / (rect.width / 2);
+        const deltaY = (e.clientY - cardCenterY) / (rect.height / 2);
+
+        const rotateX = -deltaY * 8; // degrees
+        const rotateY = deltaX * 8;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-2px)`;
+      });
+
+      container.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+      });
+    }
+
+    /**
+     * ==========================================================================
+     * INTERSECTION OBSERVER: SKILL BARS & COUNT-UP ANIMATIONS
+     * ==========================================================================
+     */
+    function initIntersectionObserver() {
+      let animated = false;
+      const target = document.getElementById("hero-banner");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            triggerStatsCountUp();
+            triggerSkillBars();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      if (target) observer.observe(target);
+    }
+
+    function triggerStatsCountUp() {
+      const counters = document.querySelectorAll(".count-up");
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute("data-target"), 10) || 0;
+        const duration = 1600; // ms
+        const startTime = performance.now();
+
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic formula
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeProgress * target);
+
+          counter.textContent = currentVal + "+";
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.textContent = target + "+";
+          }
+        }
+        requestAnimationFrame(updateCount);
+      });
+    }
+
+    function triggerSkillBars() {
+      const fills = document.querySelectorAll(".skill-fill");
+      fills.forEach(fill => {
+        const width = fill.getAttribute("data-width");
+        if (width) {
+          fill.style.width = width;
+        }
+      });
+    }
+
+    /**
+     * ==========================================================================
+     * INTERACTIVE MODALS & CTA BUTTONS
+     * ==========================================================================
+     */
+    function initInteractiveModals() {
+      const wifiModal = document.getElementById("modal-wifi");
+      const jobsModal = document.getElementById("modal-jobs");
+
+      // Open Wi-Fi Modal
+      const btnConnect = document.getElementById("btn-connect-now");
+      if (btnConnect) {
+        btnConnect.addEventListener("click", (e) => {
+          createRipple(e);
+          openModal(wifiModal);
+        });
+      }
+
+      // Open Jobs Modal
+      const btnJobs = document.getElementById("btn-browse-jobs");
+      if (btnJobs) {
+        btnJobs.addEventListener("click", (e) => {
+          createRipple(e);
+          openModal(jobsModal);
+        });
+      }
+
+      // Open QR click
+      const qrBox = document.getElementById("btn-show-qr");
+      if (qrBox) {
+        qrBox.addEventListener("click", () => {
+          openModal(wifiModal);
+        });
+      }
+
+      // Close handlers
+      document.querySelectorAll("[data-close-modal]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          closeModal(wifiModal);
+          closeModal(jobsModal);
+        });
+      });
+
+      // Overlay background click
+      [wifiModal, jobsModal].forEach(modal => {
+        if (!modal) return;
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal(modal);
+        });
+      });
+
+      // Escape key to close
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal(wifiModal);
+          closeModal(jobsModal);
+        }
+      });
+
+      // Jobs filter tabs
+      const filterBtns = document.querySelectorAll("[data-filter]");
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => {
+            b.style.background = "rgba(255, 255, 255, 0.1)";
+            b.style.borderColor = "var(--glass-border)";
+          });
+          btn.style.background = "var(--hot-pink)";
+          btn.style.borderColor = "var(--hot-pink)";
+
+          const category = btn.getAttribute("data-filter");
+          if (category === "all") {
+            renderJobsModal(BANNER_CONFIG.jobs);
+          } else {
+            const filtered = BANNER_CONFIG.jobs.filter(j =>
+              j.category.toLowerCase().includes(category.toLowerCase()) ||
+              j.type.toLowerCase().includes(category.toLowerCase())
+            );
+            renderJobsModal(filtered);
+          }
+        });
+      });
+
+      // Simulate Auto-Connect in Wi-Fi Modal
+      const btnSimulate = document.getElementById("btn-simulate-connect");
+      if (btnSimulate) {
+        btnSimulate.addEventListener("click", () => {
+          btnSimulate.innerHTML = `<span>Connecting to ${BANNER_CONFIG.wifi.ssid}...</span>`;
+          btnSimulate.disabled = true;
+
+          setTimeout(() => {
+            btnSimulate.innerHTML = `<span style="color:var(--white);">Connected Successfully! (300 Mbps Active)</span>`;
+            showToast("Connected to Free High-Speed Wi-Fi!");
+            setTimeout(() => {
+              closeModal(wifiModal);
+              btnSimulate.disabled = false;
+              btnSimulate.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Auto-Connect Mobile Device</span>
+              `;
+            }, 1200);
+          }, 1000);
+        });
+      }
+    }
+
+    function openModal(modal) {
+      if (!modal) return;
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    /**
+     * Create Material-like click ripple on primary buttons
+     */
+    function createRipple(event) {
+      const btn = event.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+      const radius = diameter / 2;
+
+      const rect = btn.getBoundingClientRect();
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - rect.left - radius}px`;
+      circle.style.top = `${event.clientY - rect.top - radius}px`;
+      circle.classList.add("ripple-effect");
+
+      const existing = btn.querySelector(".ripple-effect");
+      if (existing) existing.remove();
+
+      btn.appendChild(circle);
+    }
+
+    /**
+     * ==========================================================================
+     * CLIPBOARD & PNG BANNER EXPORT
+     * ==========================================================================
+     */
+    function initClipboardAndExport() {
+      // Copy Wi-Fi SSID
+      const copyBtns = [
+        document.getElementById("btn-copy-wifi-top"),
+        document.getElementById("btn-copy-wifi-bottom"),
+        document.getElementById("btn-copy-modal-ssid")
+      ];
+
+      copyBtns.forEach(btn => {
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          copyToClipboard(BANNER_CONFIG.wifi.ssid, `Wi-Fi Network "${BANNER_CONFIG.wifi.ssid}" copied!`);
+        });
+      });
+
+      // Export as PNG
+      const btnExport = document.getElementById("btn-download-png");
+      if (btnExport) {
+        btnExport.addEventListener("click", () => {
+          exportBannerAsPNG();
+        });
+      }
+    }
+
+    function copyToClipboard(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMsg);
+        }).catch(() => {
+          fallbackCopyText(text, successMsg);
+        });
+      } else {
+        fallbackCopyText(text, successMsg);
+      }
+    }
+
+    function fallbackCopyText(text, successMsg) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        showToast(successMsg);
+      } catch (err) {
+        showToast("Press Ctrl+C to copy SSID: " + text);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast-message");
+      const textEl = document.getElementById("toast-text");
+      if (!toast || !textEl) return;
+
+      textEl.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3200);
+    }
+
+    /**
+     * High-Resolution PNG Export with html2canvas
+     */
+    function exportBannerAsPNG() {
+      const bannerEl = document.getElementById("hero-banner");
+      const btnExport = document.getElementById("btn-download-png");
+      if (!bannerEl || typeof html2canvas === "undefined") {
+        showToast("HTML2Canvas library loading, please try again in a moment.");
+        return;
+      }
+
+      const originalHtml = btnExport.innerHTML;
+      btnExport.innerHTML = `<span>Generating PNG...</span>`;
+      btnExport.disabled = true;
+
+      html2canvas(bannerEl, {
+        scale: 2, // 2x retina density for crisp high-resolution display
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#2E1065",
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = `Free-WiFi-Developer-Banner-${Date.now()}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+        showToast("Banner exported as high-resolution PNG image!");
+        btnExport.innerHTML = originalHtml;
+        btnExport.disabled = false;
+      }).catch(err => {
+        console.error("Export error:", err);
+        showToast("Export failed. Please check browser permissions.");
+        btnExport.innerHTML = originalHtml;
+        btnExport.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>
